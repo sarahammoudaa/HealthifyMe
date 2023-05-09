@@ -1,0 +1,206 @@
+<?php
+require_once '../controller/skincarec.php';
+$problemsc = new problemsc();
+$solutionsc = new solutionsc();
+
+// Récupérer l'ID de la réservation à afficher à partir de l'URL
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} else {
+    // Si l'ID n'est pas présent dans l'URL, rediriger vers la page précédente
+    header("Location:javascript://history.go(-1)");
+    exit();
+}
+
+// Récupérer les données de la réservation correspondant à l'ID
+$list = $problemsc->listproblems($id);
+
+// Récupérer le skin type à partir de l'URL
+
+// Récupérer les informations sur les solutions correspondantes
+// Récupérer les informations sur les solutions correspondantes
+$list = $problemsc->listProbSol($id);
+$lists = $problemsc->listProbProd($id);
+?>
+
+<?php
+// Connect to the database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "skin_care";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+if (!$conn) {
+    die('Connection failed: ' . mysqli_connect_error());
+}
+
+// Handle like/dislike button clicks
+if (isset($_POST['like'])) {
+    $solution_id = $_POST['solution_id'];
+    $sql = "UPDATE solutions SET avis = 1 WHERE ids = $solution_id";
+    mysqli_query($conn, $sql);
+} elseif (isset($_POST['dislike'])) {
+    $solution_id = $_POST['solution_id'];
+    $sql = "UPDATE solutions SET avis = -1 WHERE ids = $solution_id";
+    mysqli_query($conn, $sql);
+}
+
+mysqli_close($conn);
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+		 <!-- Afficher l'ID de la probléme dans un tableau -->
+<table border="1" align="center" style="border-collapse: separate; border-spacing: 10px;">
+  <tr>
+      <th>ID Problem :</th>
+  </tr>
+  <?php
+  foreach ($list as $problemsc ) {
+  ?>
+      <tr>
+          <td><?php echo $problemsc['ID']; ?></td>
+      </tr>
+  <?php } ?>
+</table>
+<div class="my-container">
+<h1></h1>
+<p> </p>
+</div>
+    <!-- Afficher la probléme dans un tableau -->
+<table border="1" align="center" style="border-collapse: separate; border-spacing: 10px;">
+  <tr>
+      <th>Problem : </th>
+  </tr>
+  <?php
+  foreach ($list as $problemsc ) {
+  ?>
+      <tr>
+          <td><?php echo $problemsc['problem']; ?></td>
+      </tr>
+  <?php } ?>
+</table>
+<div class="my-container">
+<h1></h1>
+<p> </p>
+</div>
+<!-- Afficher la solution dans un tableau -->
+<table border="1" align="center" style="border-collapse: separate; border-spacing: 10px;">
+  <tr>
+      <th>Solution : </th>
+      <th>Solution : </th>
+      <th> </th>
+  </tr>
+  <?php
+ foreach ($list as $solutionsc) {
+
+  ?>
+<tr> 
+  <td>
+    <input type="hidden" name="solution_id" value="<?php echo $solutionsc['ids']; ?>" readonly>
+    <span><?php echo $solutionsc['ids']; ?></span>
+  </td>
+  <td><?php echo $solutionsc['solution']; ?></td>
+  <td>
+    <button type="button" class="like-btn" data-solution-id="<?php echo $solutionsc['ids']; ?>">
+      <i class="fa fa-thumbs-up"></i> Like
+    </button>
+  </td>
+  <td>
+    <button type="button" class="dislike-btn" data-solution-id="<?php echo $solutionsc['ids']; ?>">
+      <i class="fa fa-thumbs-down"></i> Dislike
+    </button>
+  </td>
+</tr>
+
+<!-- JavaScript code -->
+<script>
+  const likeBtns = document.querySelectorAll('.like-btn');
+  const dislikeBtns = document.querySelectorAll('.dislike-btn');
+
+  likeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const solutionId = btn.getAttribute('data-solution-id');
+      const dislikeBtn = document.querySelector(`.dislike-btn[data-solution-id="${solutionId}"]`);
+      if (btn.classList.contains('active')) {
+        btn.classList.remove('active');
+      } else {
+        btn.classList.add('active');
+        dislikeBtn.classList.remove('active');
+      }
+    });
+  });
+
+  dislikeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const solutionId = btn.getAttribute('data-solution-id');
+      const likeBtn = document.querySelector(`.like-btn[data-solution-id="${solutionId}"]`);
+      if (btn.classList.contains('active')) {
+        btn.classList.remove('active');
+      } else {
+        btn.classList.add('active');
+        likeBtn.classList.remove('active');
+      }
+    });
+  });
+</script>
+
+<!-- CSS code -->
+<style>
+  .like-btn.active {
+    color: green;
+  }
+  .dislike-btn.active {
+    color: red;
+  }
+</style>
+
+  <?php } ?>
+</table>
+<div class="my-container">
+<h1></h1>
+<p> </p>
+</div>
+</section>
+<!--list Product-->
+<div class="main-panel">
+          <div class="content-wrapper">
+    <div class="form mt-5">
+        <form action="#" method="post" role="form" class="php-email-form">
+            <div class="contact">
+                <table border="1" align="center" style="border-collapse: separate; border-spacing: 10px;">
+                    <tr>
+                        <th>ID </th>
+                        <th>Skin Type </th>
+                        <th>Product</th>
+                        <th>Product Type</th>
+                    </tr>
+                   <?php foreach ($lists as $problemsc) {?>
+                        <tr>
+                            <td><?php echo $problemsc['id']; ?></td>
+                            <td><?php echo $problemsc['skintype']; ?></td>
+                            <td><?php echo $problemsc['product']; ?></td>
+                            <td><?php echo $problemsc['producttype']; ?></td>
+                        </tr>
+                    <?php } ?>
+                            </table>
+                            </div>
+                            </form>
+                            
+                            
+                            </div>
+                            </div>
+                        <!--end list Product-->
+
+</body>
+
+</html>
+
