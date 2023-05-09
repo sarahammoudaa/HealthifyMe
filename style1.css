@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+/* font-family: 'Raleway', sans-serif;*/
+body, html {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+a,a:hover{
+    text-decoration: none;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.separator{
+    height: 3px;
+    width: 80px;
+    border: none;
+    box-shadow: none;
+    background-color:#8C3E4C;
+}
+
+/*header*/
+.header {
+    background-color: #8C3E4C;
+    height: 70px;
+    line-height: 70px;
+}
+
+.logo{
+    color: #EDE9F2;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    float: left;
+}
+
+.menu{
+    float: right;   
+}
+
+.menu a {
+    color: #EDE9F2; 
+    margin-right: 20px;
+}
+
+.menu a:hover {
+    color: #593C3C; 
+}
+/*baniére*/
+.banner{
+width: 100%;
+max-width: 100%;
+}
+
+.ban {
+    width: 100%;
+max-width: 100%;
+}
+
+.ban img{
+    width: 100%;
+max-width: 100%;
+}
+
+.inner-banner {
+    position: absolute;
+    top:    40%;
+    left: 22%;
+    width: 100%;
+    text-align: center;
+}
+
+.inner-banner h1{
+    color: #8C3E4C;
+    text-shadow: 1px 1px 20px #8C3E4C;
+}
+
+.inner-banner h3{
+    color: #593C3C;
+    text-shadow: 1px 1px 10px #593C3C;
+}
+
+.inner-banner .btn-custom {
+    background-color: #3F402A;
+    color: #F2E4E4;
+}
+
+.inner-banner .btn-custom:hover {
+    background-color: #593C3C;  
+}
+
+/*about*/
+.about{
+    text-align: center;
+    padding-top: 5%;
+}
+
+.about article {
+    margin-top: 5%;
+}
+.about article h2{
+    text-align: center;
+}
+/*portfolio*/
+.portfolio{
+    background-color: #F2E3D5;
+    margin: 5% auto;
+    color: #8C3E4C;
+    text-align: center;
+}
+
+.portfolio .item-folio {
+    height: 250px;
+    background-color: #D7A480;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.portfolio .item-folio img {
+    max-height: 200px;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/*.portfolio{
+    background-color: #F2E3D5;
+    margin-top: 5%;
+}
+
+.portfolio {
+    text-align: center;
+    color :#8C3E4C;
+    height: 600px;
+  
+}
+
+.portfolio .item-folio {
+    height: 250px;
+    background-color: #3F402A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.portfolio .item-folio img {
+    max-height: 500px;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+}*/
+
+
+/*formulaire*/
+.footer{
+    background-color: #8C3E4C;
+}
+
+.footer{
+    padding: 4%;
+    height: 400px;
+}
+
+.footer h2{
+    color: #F2E3D5;
+    text-shadow: 1px 1px 10px #F2E3D5;
+}
+
+.footer h4{
+    color: #F2E3D5;
+    text-shadow: 1px 1px 10px #F2E3D5;
+}
+
+.col-md-3{
+    background: #593C3C;
+    padding: 4%;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.contact-info{
+    margin-top: 10%;
+}
+
+.contact-info img{
+    margin-bottom: 15%;
+}
+
+.contact-info h2{
+    margin-bottom: 10%;
+}
+
+.col-md-9{
+    background: #F2E3D5;
+    padding: 3%;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.contact-form label{
+    font-weight: 600;
+}
+
+.contact-form button{
+    background: #8C3E4C;
+    color: #fff;
+    font-weight: 600;
+    width: 25%;
+}
+
+.contact-form button:focus{
+    box-shadow: none;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group .control-label {
+    font-weight: 600;
+    text-align: left;
+}
+
+.form-control {
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    border-color: #8C3E4C;
+    box-shadow: none;
+}
+
+textarea.form-control {
+    height: 150px;
+    resize: none;
+}
